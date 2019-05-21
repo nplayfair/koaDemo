@@ -1,8 +1,9 @@
-const Koa       = require('koa');
-const KoaRouter = require('koa-router');
-const json      = require('koa-json');
-const path      = require('path');
-const render    = require('koa-ejs');
+const Koa         = require('koa');
+const KoaRouter   = require('koa-router');
+const json        = require('koa-json');
+const path        = require('path');
+const render      = require('koa-ejs');
+const bodyParser  = require('koa-bodyparser');
 
 const app = new Koa();
 const router = new KoaRouter();
@@ -15,6 +16,9 @@ app.use(json());
 
 // Router middleware
 app.use(router.routes()).use(router.allowedMethods());
+
+// Body parser middleware
+app.use(bodyParser());
 
 // Simple example
 // app.use(async ctx => ctx.body = { msg: 'Hello world' });
@@ -30,6 +34,7 @@ render(app, {
 // Routes
 router.get('/', index);
 router.get('/add', showAdd);
+router.post('/add', add);
 
 // List of things
 async function index(ctx) {
@@ -43,6 +48,12 @@ async function index(ctx) {
 async function showAdd(ctx) {
   await ctx.render('add');
 }
+
+// Add thing
+async function add() {
+
+}
+
 
 router.get('/test', ctx => (ctx.body = 'Test'));
 
