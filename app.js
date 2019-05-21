@@ -58,6 +58,7 @@ async function add(ctx) {
 
 
 router.get('/test', ctx => (ctx.body = 'Test'));
+router.get('/test/:name', ctx => (ctx.body = `Hello ${ctx.params.name}`));
 
 
 app.listen(3000, () => console.log('server started'));
