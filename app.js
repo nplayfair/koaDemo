@@ -29,6 +29,7 @@ render(app, {
 
 // Routes
 router.get('/', index);
+router.get('/add', showAdd);
 
 // List of things
 async function index(ctx) {
@@ -36,6 +37,11 @@ async function index(ctx) {
     title: "Things I Love",
     things: things
   });
+}
+
+// Show add page
+async function showAdd(ctx) {
+  await ctx.render('add');
 }
 
 router.get('/test', ctx => (ctx.body = 'Test'));
