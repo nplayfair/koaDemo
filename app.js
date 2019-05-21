@@ -14,11 +14,11 @@ const things = ['My Family', 'Nottingham Forest', 'Guitar'];
 // JSON prettier middleware
 app.use(json());
 
-// Router middleware
-app.use(router.routes()).use(router.allowedMethods());
-
 // Body parser middleware
 app.use(bodyParser());
+
+// Router middleware
+app.use(router.routes()).use(router.allowedMethods());
 
 // Simple example
 // app.use(async ctx => ctx.body = { msg: 'Hello world' });
@@ -50,8 +50,10 @@ async function showAdd(ctx) {
 }
 
 // Add thing
-async function add() {
-
+async function add(ctx) {
+  const body = ctx.request.body;
+  things.push(body.thing);
+  ctx.redirect('/');
 }
 
 
