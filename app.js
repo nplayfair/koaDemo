@@ -7,6 +7,9 @@ const render    = require('koa-ejs');
 const app = new Koa();
 const router = new KoaRouter();
 
+// TODO Replace with DB
+const things = ['My Family', 'Nottingham Forest', 'Guitar'];
+
 // JSON prettier middleware
 app.use(json());
 
@@ -27,7 +30,8 @@ render(app, {
 // Index route
 router.get('/', async ctx => {
   await ctx.render('index', {
-    title: "Things I Love"
+    title: "Things I Love",
+    things: things
   });
 });
 
